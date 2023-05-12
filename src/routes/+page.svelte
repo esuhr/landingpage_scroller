@@ -35,7 +35,8 @@
 	}
 
 	onMount(() => {
-
+		video.play()
+		video.pause()
 		gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, MorphSVGPlugin, DrawSVGPlugin);
 		ScrollTrigger.normalizeScroll(true);
 
@@ -254,6 +255,7 @@
 				bind:currentTime={time}
 				preload="auto"
 				muted
+				playsinline
 				>
 				<source src="/video.webm" type="video/webm">
 				<source src="/video.mp4" type="video/mp4">
