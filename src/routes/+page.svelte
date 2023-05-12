@@ -244,9 +244,9 @@
 				muted
 				data-sveltekit-preload-data
 				>
-				<!-- <source src="/video.webm" type="video/webm"> -->
-				<source src="{videoSrc}" type="video/mp4">
-				<source src="{videoWm}" type="video/webm">
+				<source src={videoWm} type="video/webm">
+				<source src={videoSrc} type="video/mp4">
+				
 			</video>
 		</div>
 		<div class="imageContainer" bind:this={imageContainer}>
