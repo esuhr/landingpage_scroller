@@ -17,8 +17,7 @@
 	let mask;
 	let video, time, duration, totalScroll;
 	let vis = "visible";
-	let progress = 0;
-	let isLoading = true;
+	let pageView = "hidden";
 
 	const colors = {
 		black: "#272727",
@@ -31,12 +30,14 @@
 		second: "M153.79,68.14V1148.14h1920V68.14H153.79Zm958.59,961.13c-220.91,0-400-179.09-400-400s179.09-400,400-400,400,179.09,400,400-179.09,400-400,400Z",
 		third: "M153.79,68.14V1148.14h1920V68.14H153.79ZM1634.1,621.74l-4.24,31.34-38.96,372.71-45.74,27.11,.85,5.93,5.93,4.24v16.09l10.16,5.93,.85,16.09-17.79,6.78-33.88,.85-37.27-.85-16.94-5.93v-17.79l11.86-4.24-.85-19.48,5.93-3.39-.85-5.93-31.51-15.42-.02,40.17s3.01-1.88-6.78,16.19c-9.79,18.07-56.47,16.56-56.47,16.56l-73.79,1.51s-54.78,.28-112.38,.56c-57.6,.28-67.2-9.04-75.67-14.4-.22-.14-.43-.28-.63-.43-10.67,17.26-56.03,15.8-56.03,15.8l-73.79,1.51s-54.78,.28-112.38,.56c-57.6,.28-67.2-9.04-75.67-14.4-5.31-3.37-8.18-10.4-9.58-15.17-24.22,14.58-52.59,22.96-82.92,22.96-88.96,0-161.08-72.12-161.08-161.08s72.12-161.08,161.08-161.08c29.85,0,57.8,8.13,81.78,22.29V305.72c-2.26-6.78,6.02-15.44,6.02-15.44l100.52-98.26,.38-7.53-11.67,.38-3.39-1.88-2.64-1.13-2.64-3.39,1.88-5.27,4.89-1.51,.75-3.76,1.13-3.01v-6.4l-1.51-5.27,.75-5.65,2.64-5.65-.75-6.02-1.88-3.39s-.75-25.22,0-27.11c.75-1.88,2.64-3.39,6.4-6.78s129.88-1.88,132.89,0c3.01,1.88,7.53,6.78,7.53,6.78l-.38,19.58-1.88,4.89v4.89l2.64,3.01-.38,7.53-6.02,5.65,.38,4.52,5.27,6.4,.38,8.66s4.14,1.88,6.4,3.39c2.26,1.51,1.51,3.39,1.13,6.02-.38,2.64-6.78,3.76-6.78,3.76h-13.18l.75,9.04s81.9,82.24,95.63,93.72l99.75-97.51,.38-7.53-11.67,.38-3.39-1.88-2.64-1.13-2.64-3.39,1.88-5.27,4.89-1.51,.75-3.76,1.13-3.01v-6.4l-1.51-5.27,.75-5.65,2.64-5.65-.75-6.02-1.88-3.39s-.75-25.22,0-27.11c.75-1.88,2.64-3.39,6.4-6.78s129.88-1.88,132.89,0c3.01,1.88,7.53,6.78,7.53,6.78l-.38,19.58-1.88,4.89v4.89l2.64,3.01-.38,7.53-6.02,5.65,.38,4.52,5.27,6.4,.38,8.66s4.14,1.88,6.4,3.39c2.26,1.51,1.51,3.39,1.13,6.02-.38,2.64-6.78,3.76-6.78,3.76h-13.18l.75,9.04s89.98,90.35,97.13,94.87c7.15,4.52,9.41,14.68,9.41,14.68l-.14,279.05,195.62-.65,.85,26.26-4.24,17.79Z",
 	}
+	function videoLoad() {
+		pageView = "visible";
+	}
 
 	onMount(() => {
-		video.load()
+
 		gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, MorphSVGPlugin, DrawSVGPlugin);
 		ScrollTrigger.normalizeScroll(true);
-		
 
 		logo = lottie.loadAnimation({
 			container: logoContainer,
@@ -107,7 +108,7 @@
 				currentTime: 0
 				},
 				{
-				currentTime: duration
+				currentTime: duration || 1
 				}
 			);
 
@@ -146,35 +147,35 @@
 			tl3.add("start", 5);
 			tl3.add("end", 5);
 			tl3.to(logoContainer, {
-				duration: 1,
+				duration: 2,
 				top: "30%",
 			}, "start");
 			tl3.to(touchContainer, {
-				duration: 1,
+				duration: 2,
 				top: "30%",
 			}, "start");
 			tl3.to(aniContainer, {
-				duration: 1,
+				duration: 2,
 				top: "55%",
 			}, "start");
 			tl3.to(form, {
-				duration: 1,
+				duration: 2,
 				bottom: "8%",
 			}, "start");
 			tl3.to(emailInput, {
-				duration: 1,
+				duration: 2,
 				alpha: 1,
 			}, "start");
 			tl3.to(emailButton, {
-				duration: 1,
+				duration: 2,
 				alpha: 1,
 			}, "start");
 			tl3.to(aniContainer, {
-				duration: 1,
+				duration: 2,
 				alpha: 0,
 			}, "start");
 			tl3.to(imageContainer, {
-				duration: 1,
+				duration: 2,
 				alpha: 1,
 				top: "55%",
 			},"start");
@@ -221,7 +222,9 @@
 </script>
 
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
-<div class="tracker">{isLoading}</div>
+<!-- <div class="tracker">{isLoading}</div> -->
+<svelte:body bind:this={body} style="visibility:{pageView}"/>
+
 <div class="pageContainer" bind:this={pageContainer}>
 	<div class="contentContainer">
 		<div class="logoContainer" bind:this={logoContainer}></div>
@@ -244,8 +247,7 @@
 				<path id="mask" bind:this={mask} fill={colors.yellow} d={paths.first}/>
 			</svg>
 			<video
-				on:loadstart={() => isLoading = true}
-				on:canplay={() => isLoading = false}
+				on:loadeddata={videoLoad}
 				class="video"
 				bind:this={video}
 				bind:duration={duration}
@@ -439,10 +441,10 @@
 	}
 /* mobile sizing */
 	@media screen and (max-width: 480px) {
-		.tracker {
+		/* .tracker {
 			position: fixed;
 			top: 0;
-		}
+		} */
 
 		.aniContainer {
 			position: fixed;
