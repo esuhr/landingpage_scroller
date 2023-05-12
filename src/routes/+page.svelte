@@ -242,7 +242,6 @@
 				preload="auto"
 				muted
 				data-sveltekit-preload-data
-				playsinline
 				>
 				<!-- <source src="/video.webm" type="video/webm"> -->
 				<source src="{videoSrc}" type="video/mp4">
