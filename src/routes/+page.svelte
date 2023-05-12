@@ -108,7 +108,7 @@
 				currentTime: 0
 				},
 				{
-				currentTime: duration || 1
+				currentTime: duration
 				}
 			);
 
