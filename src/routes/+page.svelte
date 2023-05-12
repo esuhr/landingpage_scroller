@@ -24,7 +24,6 @@
 		yellow: "#FFC82C",
 		white: "#F7F4EE"
 	}
-
 	const paths = {
 		first:  "M2073.79,1148.14H153.79V68.14h1920V1148.14Z",
 		second: "M153.79,68.14V1148.14h1920V68.14H153.79Zm958.59,961.13c-220.91,0-400-179.09-400-400s179.09-400,400-400,400,179.09,400,400-179.09,400-400,400Z",
@@ -33,10 +32,11 @@
 	function videoLoad() {
 		pageView = "visible";
 	}
-
-	onMount(() => {
+	function handleClick() {
 		video.play()
 		video.pause()
+	}
+	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, MorphSVGPlugin, DrawSVGPlugin);
 		ScrollTrigger.normalizeScroll(true);
 
@@ -182,11 +182,7 @@
 			},"start");
 
 		totalScroll = document.documentElement.scrollHeight - innerHeight;
-
 	});
-	
-
-
 	buttonText = "SUBSCRIBE"
 	const emailFunc = () => {
 		if(inputText.length == 1 ) {
@@ -214,17 +210,13 @@
 				color: colors.white,
 			})
 		}
-
-
 	}
 	$: if(y == totalScroll) { emailInput.focus() }
-
-
 </script>
 
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
 <!-- <div class="tracker">{isLoading}</div> -->
-<svelte:body bind:this={body} style="visibility:{pageView}"/>
+<svelte:body bind:this={body} style="visibility:{pageView}" on:click={handleClick}/>
 
 <div class="pageContainer" bind:this={pageContainer}>
 	<div class="contentContainer">
