@@ -7,6 +7,7 @@
 	import ScrollTrigger from "gsap/dist/ScrollTrigger";
 	import ScrambleTextPlugin from "gsap/dist/ScrambleTextPlugin";
 	import videoSrc from "/video.mp4"
+	import videoWm from "/video.webm"
 
 	let logoContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, emailInput, emailButton, form;
 	let inputText, buttonText;
@@ -245,6 +246,7 @@
 				>
 				<!-- <source src="/video.webm" type="video/webm"> -->
 				<source src="{videoSrc}" type="video/mp4">
+				<source src="{videoWm}" type="video/webm">
 			</video>
 		</div>
 		<div class="imageContainer" bind:this={imageContainer}>
