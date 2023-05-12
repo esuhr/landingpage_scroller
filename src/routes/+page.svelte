@@ -235,8 +235,7 @@
 				<path id="mask" bind:this={mask} fill={colors.yellow} d={paths.first}/>
 			</svg>
 			<video
-				class="video"  
-				on:mount
+				class="video"
 				bind:this={video}
 				bind:duration={duration}
 				bind:currentTime={time}
