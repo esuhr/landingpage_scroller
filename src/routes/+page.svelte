@@ -506,7 +506,7 @@
 			border-left: none;
 			border-right: none;
 			border-bottom: .5px var(--black) solid;
-			font-size: .8rem	;
+			font-size: 1rem	;
 			font-family: 'Courier New', Courier, monospace;
 			margin: .8rem;
 			padding: .5rem;
