@@ -240,7 +240,7 @@
 				bind:this={video}
 				bind:duration={duration}
 				bind:currentTime={time}
-				preload="auto"
+				preload="metadata"
 				muted
 				data-sveltekit-preload-data
 				>
