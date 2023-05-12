@@ -17,6 +17,8 @@
 	let mask;
 	let video, time, duration, totalScroll;
 	let vis = "visible";
+	let progress = 0;
+	let isLoading = true;
 
 	const colors = {
 		black: "#272727",
@@ -31,7 +33,7 @@
 	}
 
 	onMount(() => {
-
+		video.load()
 		gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, MorphSVGPlugin, DrawSVGPlugin);
 		ScrollTrigger.normalizeScroll(true);
 		
@@ -105,7 +107,7 @@
 				currentTime: 0
 				},
 				{
-				currentTime: video.duration || 1
+				currentTime: duration
 				}
 			);
 
@@ -219,7 +221,7 @@
 </script>
 
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
-
+<div class="tracker">{isLoading}</div>
 <div class="pageContainer" bind:this={pageContainer}>
 	<div class="contentContainer">
 		<div class="logoContainer" bind:this={logoContainer}></div>
@@ -242,13 +244,14 @@
 				<path id="mask" bind:this={mask} fill={colors.yellow} d={paths.first}/>
 			</svg>
 			<video
+				on:loadstart={() => isLoading = true}
+				on:canplay={() => isLoading = false}
 				class="video"
 				bind:this={video}
 				bind:duration={duration}
 				bind:currentTime={time}
-				preload="metadata"
+				preload="auto"
 				muted
-				data-sveltekit-preload-data
 				>
 				<source src="/video.webm" type="video/webm">
 				<source src="/video.mp4" type="video/mp4">
@@ -436,6 +439,11 @@
 	}
 /* mobile sizing */
 	@media screen and (max-width: 480px) {
+		.tracker {
+			position: fixed;
+			top: 0;
+		}
+
 		.aniContainer {
 			position: fixed;
 			top: 70%;
