@@ -6,8 +6,6 @@
 	import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 	import ScrollTrigger from "gsap/dist/ScrollTrigger";
 	import ScrambleTextPlugin from "gsap/dist/ScrambleTextPlugin";
-	import videoSrc from "/video.mp4"
-	import videoWm from "/video.webm"
 
 	let logoContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, emailInput, emailButton, form;
 	let inputText, buttonText;
@@ -101,9 +99,15 @@
 				// markers: true,
 			}
 		});
-
-
-		tlvid.to(video, {currentTime: duration});
+			tlvid.fromTo(
+				video,
+				{
+				currentTime: 0
+				},
+				{
+				currentTime: video.duration || 1
+				}
+			);
 
 		var tl2 = gsap.timeline({
 			scrollTrigger: {
@@ -174,8 +178,10 @@
 			},"start");
 
 		totalScroll = document.documentElement.scrollHeight - innerHeight;
+
 	});
 	
+
 
 	buttonText = "SUBSCRIBE"
 	const emailFunc = () => {
@@ -244,8 +250,8 @@
 				muted
 				data-sveltekit-preload-data
 				>
-				<source src={videoWm} type="video/webm">
-				<source src={videoSrc} type="video/mp4">
+				<source src="/video.webm" type="video/webm">
+				<source src="/video.mp4" type="video/mp4">
 				
 			</video>
 		</div>
