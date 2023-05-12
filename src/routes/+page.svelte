@@ -109,7 +109,7 @@
 				trigger: s2,
 				scrub: true,
 				start: "top 50%",
-				end: "+=260%",
+				end: "+=240%",
 				// markers: true,
 			},
 			onUpdate: () => {
