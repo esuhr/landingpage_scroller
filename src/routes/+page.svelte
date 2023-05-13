@@ -229,7 +229,7 @@
 			<div class="touch touch-bottom"></div>
 		</div>
 		<div class="emailContainer" bind:this={emailContainer} style="visibility: {vis};">
-			<form bind:this={form} on:submit|preventDefault={submitFunc}>
+			<form bind:this={form} on:submit|preventDefault={submitFunc} netlify>
 				<input type="email" class="email" bind:value={inputText} bind:this={emailInput} on:input={emailFunc}>
 				<button type="submit" class="emailbutton" bind:this={emailButton} contenteditable="true" >{buttonText}</button>
 			</form>
