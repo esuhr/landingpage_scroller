@@ -228,7 +228,7 @@
 			</div>
 			<div class="touch touch-bottom"></div>
 		</div>
-		<div class="emailContainer" bind:this={emailContainer} style="visibility: {vis};">
+		<div class="emailContainer" bind:this={emailContainer} style="visibility:{vis};">
 			<form bind:this={form} on:submit|preventDefault={submitFunc} netlify>
 				<input type="email" class="email" bind:value={inputText} bind:this={emailInput} on:input={emailFunc}>
 				<button type="submit" class="emailbutton" bind:this={emailButton} contenteditable="true" >{buttonText}</button>
@@ -318,26 +318,46 @@
 	}
 
 	@media screen and (min-width: 480px) {
-		.pageContainer {
-			width: 100vw;
-			height: 400vh;
-			background-color: var(--yellow);
-			z-index: -1;
-		}
+
 		.aniContainer {
 			position: fixed;
 			top: 70%;
 			left: 50%;
 			transform: translate(-50%, -30%);
-			width: 30vw;
+			width: 100vw;
+			height: 60vw;
 			opacity: 0;
 			visibility: hidden;
 			/* border: .5px red solid; */
 		}
+
+		.imageContainer {
+			opacity: 0;
+			visibility: hidden;
+			position: fixed;
+			top: 70%;
+			left: 49%;
+			transform: translate(-51%, -30%);
+			width: 100%;
+			z-index: 10;
+		}
+		.imageContainer img {
+			width: 100%;
+		}
+
+		.pageContainer {
+			width: 100vw;
+			height: 400vh;
+			background-color: var(--yellow);
+			z-index: -1;
+			visibility: hidden;
+		}
+
 		.logoContainer {
 			position: fixed;
 			z-index: 10;
-			max-width: 30vw;
+			width: 20%;
+			max-height: 30vh;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
@@ -346,22 +366,32 @@
 
 		.touchContainer {
 			position: fixed;
-			z-index: 11;
-			height: 10vw;
-			width: 20vw;
+			z-index: 10;
+			width: 70vw;
+			max-height: 30vh;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			/* border: .5px blue solid; */
 		}
-
+		
 		.mask {
+			position: fixed;
 			width: 100%;
 			height: 100%;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50, -50);
+			left: 49%;
+			top: 51%;
+			transform: translate(-51%, -49%);
 			z-index: 10;
+		}
+
+		.videoContainer {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 90%;
+			z-index: -1;
 		}
 
 		form {
@@ -375,6 +405,7 @@
 			justify-content: center;
 			align-items: center;
 			bottom: 0rem;
+			visibility: hidden;
 
 		}
 
@@ -383,30 +414,30 @@
 			border-left: none;
 			border-right: none;
 			border-bottom: .5px var(--black) solid;
-			font-size: 1.2rem	;
+			font-size: 1rem	;
 			font-family: 'Courier New', Courier, monospace;
 			margin: .8rem;
 			padding: .5rem;
 			opacity: 0;
 			visibility: hidden;
 			background-color: rgba(0,0,0,0);
-			width: 25vw;
+			width: 50vw;
 			text-align: center;
 		}
 
 		.emailbutton {
 			font-family: 'Courier New', Courier, monospace;
-			font-size: 0.8rem;
-			width: 25vw;
+			font-size: .5rem;
+			width: 50vw;
 			color: var(--black);
 			border: .1px var(--black) solid;
 			border-radius: .3rem;
-			height: 2rem;
+			height: 1.8rem;
 			padding: .2rem;
 			padding-left: .5rem;
 			padding-right: .5rem;
-			opacity: 0;
 			visibility: hidden;
+			opacity: 0;
 			background-color: rgba(0,0,0,0);
 		}
 	}
@@ -455,6 +486,13 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 			/* border: .5px blue solid; */
+		}
+
+		.textContainer {
+			font-family:Arial, Helvetica, sans-serif;
+			font-size: 0.7rem;
+			z-index: 11;
+			width: 100vw;
 		}
 
 		.touchContainer {
