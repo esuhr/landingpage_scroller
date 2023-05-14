@@ -488,13 +488,6 @@
 			/* border: .5px blue solid; */
 		}
 
-		.textContainer {
-			font-family:Arial, Helvetica, sans-serif;
-			font-size: 0.7rem;
-			z-index: 11;
-			width: 100vw;
-		}
-
 		.touchContainer {
 			position: fixed;
 			z-index: 10;
