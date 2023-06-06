@@ -6,7 +6,7 @@
 	import ScrollTrigger from "gsap/dist/ScrollTrigger";
 	import ScrambleTextPlugin from "gsap/dist/ScrambleTextPlugin";
 
-	let logoContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, videoContainer, emailInput, emailButton, form;
+	let logoContainer, contentContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, videoContainer, emailInput, emailButton, form;
 	let inputText, buttonText;
 	let innerHeight, innerWidth;
 	let y = 0;
@@ -16,6 +16,8 @@
 	let s1,s2,s3,s4;
 	let video, totalScroll;
 	let vis = "visible";
+	let thankyou;
+	let team, teamphoto;
 
 	const colors = {
 		black: "#272727",
@@ -168,12 +170,34 @@
 					text: "THANK YOU",
 					chars: "upperCase"
 				}
-			})
+			});
 			gsap.to(emailButton, {
 				duration: 0.2,
-				backgroundColor:colors.black,
+				backgroundColor: colors.black,
 				color: colors.white,
+			});
+			gsap.to(thankyou, {
+				duration: 1,
+				autoAlpha: 1,
+			});
+			gsap.to(team, {
+				delay: 1.0,
+				duration: 1,
+				autoAlpha: 1,
+			});
+			gsap.to(teamphoto, {
+				delay: 2.0,
+				duration: 5,
+				autoAlpha: 1,
 			})
+			gsap.to(contentContainer, {
+				duration: 1,
+				autoAlpha: 0,
+			});
+			gsap.to(emailInput, {
+				duration: 1,
+				autoAlpha: 0,
+			});
 		}
 	}
 	$: if(y == totalScroll) { emailInput.focus() }
@@ -182,8 +206,13 @@
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
 
 <div class="pageContainer" bind:this={pageContainer}>
-	<div class="contentContainer">
-		<div class="logoContainer" bind:this={logoContainer}></div>
+	<!-- <div class="textContainer">
+		<div class="text1"><p>healing salve</p></div>
+		<div class="text1"><p></p></div>
+	</div> -->
+	<div class="logoContainer" bind:this={logoContainer}></div>
+	<div class="contentContainer" bind:this={contentContainer}>
+
 		<div class="touchContainer" bind:this={touchContainer}>
 			<div class="touch touch-top">
 				<div class="touchpoints touchpoints-left"/>
@@ -192,18 +221,25 @@
 			</div>
 			<div class="touch touch-bottom"></div>
 		</div>
-		<div class="emailContainer" bind:this={emailContainer} style="visibility:{vis};">
-			<form bind:this={form} on:submit|preventDefault={submitFunc} netlify>
-				<input type="email" class="email" bind:value={inputText} bind:this={emailInput} on:input={emailFunc}>
-				<button type="submit" class="emailbutton" bind:this={emailButton} contenteditable="true" >{buttonText}</button>
-			</form>
-		</div>
 		<div class="aniContainer" bind:this={aniContainer}>
 			<div class="videoContainer" bind:this={videoContainer}></div>
 		</div>
 		<div class="imageContainer" bind:this={imageContainer}>
 			<img src="/Products.png" alt=""/>
 		</div>
+	</div>
+	<div class="thankyou" bind:this={thankyou} style="visibility: hidden;">
+		<p>Your support means a lot to us.</p>
+		<p>We'll keep you updated.</p>
+		<br><br>
+		<p style="visibility: hidden;" bind:this={team}>from the team:</p>
+		<img src="/sig.png" alt="" bind:this={teamphoto} style="visibility: hidden;">
+	</div>
+	<div class="emailContainer" bind:this={emailContainer} style="visibility:{vis};">
+		<form bind:this={form} on:submit|preventDefault={submitFunc} netlify>
+			<input type="email" class="email" bind:value={inputText} bind:this={emailInput} on:input={emailFunc}>
+			<button type="submit" class="emailbutton" bind:this={emailButton} contenteditable="true" >{buttonText}</button>
+		</form>
 	</div>
 </div>
 
@@ -279,6 +315,21 @@
 		width: 33%;
 		height: 100%;
 		/* border: .5px blue solid; */
+	}
+	.thankyou {
+		position: fixed;
+		text-align: center;
+		top: 40%;
+		width: 100vw;
+		height: 100vh;
+		z-index: 12;
+		font-family: var(--font1);
+		color: var(--black);
+		font-size: 1rem;
+	}
+
+	.thankyou img {
+		height: 7vh;
 	}
 
 	@media screen and (min-width: 480px) {
@@ -357,8 +408,6 @@
 			justify-content: center;
 			align-items: center;
 			bottom: 0rem;
-			/* visibility: hidden; */
-
 		}
 
 		.email {
@@ -372,7 +421,6 @@
 			margin: .8rem;
 			padding: .5rem;
 			opacity: 0;
-			/* visibility: hidden; */
 			background-color: rgba(27,27,27,0);
 			width: 400px;
 			text-align: center;
@@ -389,7 +437,6 @@
 			padding: .2rem;
 			padding-left: .5rem;
 			padding-right: .5rem;
-			/* visibility: hidden; */
 			opacity: 0;
 			background-color: rgba(27,27,27,0);
 		}
