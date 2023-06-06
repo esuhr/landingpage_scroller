@@ -324,6 +324,7 @@
 		height: 100vh;
 		z-index: 12;
 		font-family: var(--font1);
+		font-weight: 300;
 		color: var(--black);
 		font-size: 1rem;
 	}
@@ -443,7 +444,9 @@
 	}
 /* mobile sizing */
 	@media screen and (max-width: 480px) {
-
+		.thankyou {
+			font-size: 0.7rem;
+		}
 		.aniContainer {
 			position: fixed;
 			top: 70%;
@@ -463,7 +466,7 @@
 			top: 70%;
 			left: 50%;
 			transform: translate(-50%, -30%);
-			width: 70vw;
+			width: 55vw;
 			z-index: 10;
 		}
 		.imageContainer img {
