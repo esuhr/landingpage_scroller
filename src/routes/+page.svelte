@@ -13,7 +13,7 @@
 	let logo;
 	let LottiePlayhead = { frame: 0 };
 	let LottieVideohead = { frame: 0 };
-	let s1,s2,s3,s4;
+	let s1,s2,s3,s4, s5;
 	let video, totalScroll;
 	let vis = "visible";
 	let thankyou;
@@ -93,7 +93,7 @@
 				trigger: s2,
 				scrub: true,
 				start: "top 50%",
-				end: "+=240%",
+				end: "+=280%",
 				// markers: true,
 			},
 			onUpdate: () => {
@@ -112,7 +112,7 @@
 				trigger: s3,
 				scrub: 1,
 				start: "top top",
-				end: "+=100%",
+				end: "+=500%",
 				// markers: true,
 			},
 		});
@@ -126,27 +126,46 @@
 				duration: 2,
 				top: "40%",
 			}, "start");
-			tl3.to(form, {
-				duration: 2,
-				bottom: "8%",
-			}, "start");
-			tl3.to(emailInput, {
-				duration: 2,
-				autoAlpha: 1,
-			}, "start");
-			tl3.to(emailButton, {
-				duration: 2,
-				autoAlpha: 1,
-			}, "start");
 			tl3.to(aniContainer, {
-				duration: 2,
+				duration: 5,
 				autoAlpha: 0,
-			}, "start");
-			tl3.to(imageContainer, {
-				duration: 2,
+			}, "end");
+			// tl3.to(imageContainer, {
+			// 	duration: 5,
+			// 	autoAlpha: 1,
+			// 	top: "55%",
+			// },"start");
+
+		var tl4 = gsap.timeline({
+			scrollTrigger: {
+				trigger: s4,
+				// scrub: 1,
+				toggleActions: "play none none reverse",
+				start: "top top",
+				end: "bottom bottom",
+				markers: true,
+			},
+		});
+			tl4.add("start", 1);
+			tl4.add("end", 1);
+
+			tl4.to(imageContainer, {
+				duration: 0.8,
 				autoAlpha: 1,
 				top: "55%",
 			},"start");
+			tl4.to(form, {
+				duration: 2,
+				bottom: "8%",
+			}, "start");
+			tl4.to(emailInput, {
+				duration: 2,
+				autoAlpha: 1,
+			}, "start");
+			tl4.to(emailButton, {
+				duration: 2,
+				autoAlpha: 1,
+			}, "start");
 
 		totalScroll = document.documentElement.scrollHeight - innerHeight;
 	});
@@ -206,10 +225,11 @@
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
 
 <div class="pageContainer" bind:this={pageContainer}>
-	<!-- <div class="textContainer">
-		<div class="text1"><p>healing salve</p></div>
-		<div class="text1"><p></p></div>
-	</div> -->
+	<div class="textContainer">
+		<div class="text logotext-1" style="visibility:hidden;"><p>healing salve</p></div>
+		<div class="text logotext-2"><p>beautiful pigment</p></div>
+		<div class="text taglinetext-1"><p>acne<br>eczema<br>fungal</p></div>
+	</div>
 	<div class="logoContainer" bind:this={logoContainer}></div>
 	<div class="contentContainer" bind:this={contentContainer}>
 
@@ -248,6 +268,7 @@
 	<div class="scroll s2" bind:this={s2}></div>
 	<div class="scroll s3" bind:this={s3}></div>
 	<div class="scroll s4" bind:this={s4}></div>
+	<div class="scroll s5" bind:this={s5}></div>
 </div>
 
 
@@ -269,6 +290,14 @@
 		margin: 0;
 		padding: 0;
 		overflow-x: hidden;
+	}
+
+	.pageContainer {
+		width: 100vw;
+		height: 500vh;
+		background-color: var(--yellow);
+		z-index: -1;
+		/* visibility: hidden; */
 	}
 
 	.scrollContainer {
@@ -333,6 +362,22 @@
 		height: 7vh;
 	}
 
+	.textContainer {
+		font-family: var(--font1);
+		text-transform: uppercase;
+		/* position: fixed; */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		height: 100vh;
+		z-index: 12;
+	}
+
+	.text {
+		text-align: center;
+	}
+
 	@media screen and (min-width: 480px) {
 
 		.aniContainer {
@@ -357,14 +402,6 @@
 		.imageContainer img {
 			width: 100%;
 			max-width: 800px;
-		}
-
-		.pageContainer {
-			width: 100vw;
-			height: 400vh;
-			background-color: var(--yellow);
-			z-index: -1;
-			/* visibility: hidden; */
 		}
 
 		.logoContainer {
@@ -471,13 +508,6 @@
 		}
 		.imageContainer img {
 			width: 100%;
-		}
-
-		.pageContainer {
-			width: 100vw;
-			height: 400vh;
-			background-color: var(--yellow);
-			z-index: -1;
 		}
 
 		.logoContainer {
