@@ -6,18 +6,21 @@
 	import ScrollTrigger from "gsap/dist/ScrollTrigger";
 	import ScrambleTextPlugin from "gsap/dist/ScrambleTextPlugin";
 
-	let logoContainer, contentContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, videoContainer, emailInput, emailButton, form;
+	let logoContainer, contentContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, videoContainer, textContainer;
+	let emailInput, emailButton, form;
 	let inputText, buttonText;
 	let innerHeight, innerWidth;
 	let y = 0;
 	let logo;
 	let LottiePlayhead = { frame: 0 };
 	let LottieVideohead = { frame: 0 };
+	let LottieTexthead = { frame: 0 };
 	let s1,s2,s3,s4, s5;
 	let video, totalScroll;
 	let vis = "visible";
 	let thankyou;
 	let team, teamphoto;
+	let text;
 
 	const colors = {
 		black: "#272727",
@@ -106,6 +109,32 @@
 				ease: "none",
 			});
 
+		text = lottie.loadAnimation({
+			container: textContainer,
+			path: "/text.json",
+			autoplay: false,
+			loop: false,
+			renderer: "svg",
+		});
+
+		var tltext = gsap.timeline({
+			scrollTrigger: {
+				trigger: s2,
+				scrub: true,
+				start: "top 50%",
+				end: "+=280%",
+				// markers: true,
+			},
+			onUpdate: () => {
+				text.goToAndStop(LottieTexthead.frame, true)
+			}
+		});
+
+			tltext.to(LottieTexthead, {
+				frame: 341,
+				ease: "none",
+			});
+
 
 		var tl3 = gsap.timeline({
 			scrollTrigger: {
@@ -130,11 +159,6 @@
 				duration: 5,
 				autoAlpha: 0,
 			}, "end");
-			// tl3.to(imageContainer, {
-			// 	duration: 5,
-			// 	autoAlpha: 1,
-			// 	top: "55%",
-			// },"start");
 
 		var tl4 = gsap.timeline({
 			scrollTrigger: {
@@ -143,7 +167,7 @@
 				toggleActions: "play none none reverse",
 				start: "top top",
 				end: "bottom bottom",
-				markers: true,
+				// markers: true, 
 			},
 		});
 			tl4.add("start", 1);
@@ -225,11 +249,7 @@
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
 
 <div class="pageContainer" bind:this={pageContainer}>
-	<div class="textContainer">
-		<div class="text logotext-1" style="visibility:hidden;"><p>healing salve</p></div>
-		<div class="text logotext-2"><p>beautiful pigment</p></div>
-		<div class="text taglinetext-1"><p>acne<br>eczema<br>fungal</p></div>
-	</div>
+	<div class="textContainer" bind:this={textContainer}></div>
 	<div class="logoContainer" bind:this={logoContainer}></div>
 	<div class="contentContainer" bind:this={contentContainer}>
 
@@ -363,19 +383,12 @@
 	}
 
 	.textContainer {
-		font-family: var(--font1);
-		text-transform: uppercase;
-		/* position: fixed; */
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100vw;
-		height: 100vh;
-		z-index: 12;
-	}
-
-	.text {
-		text-align: center;
+		position: fixed;
+		z-index: 9;
+		top: 80%;
+		left: 50%;
+		transform: translate(-50%, -20%);
+		max-width: 300px; 
 	}
 
 	@media screen and (min-width: 480px) {
@@ -534,10 +547,10 @@
 
 		.videoContainer {
 			position: fixed;
-			top: 40%;
+			top: 30%;
 			left: 50%;
-			transform: translate(-50%, -60%);
-			width: 180vw;
+			transform: translate(-50%, -70%);
+			width: 120vw;
 			z-index: -1;
 		}
 
