@@ -6,7 +6,7 @@
 	import ScrollTrigger from "gsap/dist/ScrollTrigger";
 	import ScrambleTextPlugin from "gsap/dist/ScrambleTextPlugin";
 
-	let logoContainer, contentContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, videoContainer, textContainer;
+	let logoContainer, contentContainer, pageContainer, aniContainer, emailContainer, touchContainer, imageContainer, videoContainer, textContainer, arrowContainer;
 	let emailInput, emailButton, form;
 	let inputText, buttonText;
 	let innerHeight, innerWidth;
@@ -17,10 +17,12 @@
 	let LottieTexthead = { frame: 0 };
 	let s1,s2,s3,s4, s5;
 	let video, totalScroll;
-	let vis = "visible";
 	let thankyou;
 	let team, teamphoto;
 	let text;
+	let imageCaption;
+	let arrow;
+	let vis = "visible";
 
 	const colors = {
 		black: "#272727",
@@ -40,6 +42,22 @@
 			renderer: "svg",
 		});
 
+		arrow = lottie.loadAnimation({
+			container: arrowContainer,
+			path: "/arrow.json",
+			autoplay: true,
+			loop: true,
+			renderer: "svg",
+		});
+
+		video = lottie.loadAnimation({
+			container: videoContainer,
+			path: "/video.json",
+			autoplay: false,
+			loop: false,
+			renderer: "canvas",
+		});
+
 		var tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: s1,
@@ -53,10 +71,10 @@
 			}
 		});
 
-		tl.to(LottiePlayhead, {
-			frame: 341,
-			ease: "none",
-		});
+			tl.to(LottiePlayhead, {
+				frame: 341,
+				ease: "none",
+			});
 
 
 		var tl1 = gsap.timeline({
@@ -82,14 +100,6 @@
 				height: "15vh",
 			}, "start");
 
-
-		video = lottie.loadAnimation({
-			container: videoContainer,
-			path: "/video.json",
-			autoplay: false,
-			loop: false,
-			renderer: "canvas",
-		});
 
 		var tlvid = gsap.timeline({
 			scrollTrigger: {
@@ -190,6 +200,10 @@
 				duration: 2,
 				autoAlpha: 1,
 			}, "start");
+			tl4.to(imageCaption, {
+				duration: 5,
+				autoAlpha: 1,
+			}, "start");
 
 		totalScroll = document.documentElement.scrollHeight - innerHeight;
 	});
@@ -244,11 +258,13 @@
 		}
 	}
 	$: if(y == totalScroll) { emailInput.focus() }
+	$: if(y > 0) {vis = "hidden"}
 </script>
 
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
 
 <div class="pageContainer" bind:this={pageContainer}>
+	<div class="arrowContainer" bind:this={arrowContainer} style="visibility:{vis};"></div>
 	<div class="textContainer" bind:this={textContainer}></div>
 	<div class="logoContainer" bind:this={logoContainer}></div>
 	<div class="contentContainer" bind:this={contentContainer}>
@@ -267,6 +283,9 @@
 		<div class="imageContainer" bind:this={imageContainer}>
 			<img src="/Products.png" alt=""/>
 		</div>
+		<div class="imageCaption" bind:this={imageCaption} style="visibility:hidden;">
+			<p>We're creating a microbiome balancing haircare system for sensitive skin.</p>
+		</div>
 	</div>
 	<div class="thankyou" bind:this={thankyou} style="visibility: hidden;">
 		<p>Your support means a lot to us.</p>
@@ -275,7 +294,7 @@
 		<p style="visibility: hidden;" bind:this={team}>from the team:</p>
 		<img src="/sig.png" alt="" bind:this={teamphoto} style="visibility: hidden;">
 	</div>
-	<div class="emailContainer" bind:this={emailContainer} style="visibility:{vis};">
+	<div class="emailContainer" bind:this={emailContainer}>
 		<form bind:this={form} on:submit|preventDefault={submitFunc} netlify>
 			<input type="email" class="email" bind:value={inputText} bind:this={emailInput} on:input={emailFunc}>
 			<button type="submit" class="emailbutton" bind:this={emailButton} contenteditable="true" >{buttonText}</button>
@@ -293,7 +312,7 @@
 
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Sans&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,200;0,300;0,400;1,300&family=IBM+Plex+Sans:wght@200;300;400&display=swap');
 	:root {
 		--black: #272727;
 		--yellow: #FFC82C;
@@ -318,6 +337,16 @@
 		background-color: var(--yellow);
 		z-index: -1;
 		/* visibility: hidden; */
+	}
+
+	.arrowContainer {
+		position: fixed;
+		height: 40vh;
+		top: 60%;
+		left: 50%;
+		transform: translate(-50%, -40%);
+		z-index: 15;
+		
 	}
 
 	.scrollContainer {
@@ -414,7 +443,19 @@
 		}
 		.imageContainer img {
 			width: 100%;
-			max-width: 800px;
+			max-width: 700px;
+		}
+
+		.imageCaption {
+			position: fixed;
+			z-index: 10;
+			top: 78%;
+			left: 50%;
+			transform: translate(-50%, -22%);
+			font-family: var(--font2);
+			font-weight: 200;
+			font-size: 0.8rem;
+			max-width: 700px;
 		}
 
 		.logoContainer {
@@ -513,14 +554,27 @@
 			opacity: 0;
 			visibility: hidden;
 			position: fixed;
-			top: 70%;
+			top: 65%;
 			left: 50%;
-			transform: translate(-50%, -30%);
+			transform: translate(-50%, -35%);
 			width: 55vw;
 			z-index: 10;
 		}
 		.imageContainer img {
 			width: 100%;
+		}
+
+		.imageCaption {
+			position: fixed;
+			z-index: 10;
+			top: 75%;
+			left: 50%;
+			transform: translate(-50%, -25%);
+			font-family: var(--font2);
+			font-weight: 200;
+			font-size: 0.6rem;
+			max-width: 55vw;
+			text-align: center;
 		}
 
 		.logoContainer {
