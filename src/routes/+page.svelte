@@ -295,7 +295,7 @@
 		<img src="/sig.png" alt="" bind:this={teamphoto} style="visibility: hidden;">
 	</div>
 	<div class="emailContainer" bind:this={emailContainer}>
-		<form bind:this={form} name="email" method="POST" on:submit={submitFunc} data-netlify="true">
+		<form bind:this={form} name="email" on:submit={submitFunc} data-netlify="true">
 			<input type="hidden" name="form-name" value="netlify-form-example" />
 			<input type="email" class="email" placeholder="enter email" bind:value={inputText} bind:this={emailInput} on:input={emailFunc}>
 			<button type="submit" class="emailbutton" bind:this={emailButton} contenteditable="true" >{buttonText}</button>
