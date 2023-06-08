@@ -258,7 +258,7 @@
 		}
 	}
 	$: if(y == totalScroll) { emailInput.focus() }
-	$: if(y > 0) {vis = "hidden"}
+	$: if(y > 10) {vis = "hidden"}
 </script>
 
 <svelte:window on:beforeunload={scrollTo(0,0)} bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} bind:scrollY={y}/>
@@ -346,7 +346,7 @@
 		left: 50%;
 		transform: translate(-50%, -40%);
 		z-index: 15;
-		
+		/* border: 1px red solid; */
 	}
 
 	.scrollContainer {
@@ -554,9 +554,9 @@
 			opacity: 0;
 			visibility: hidden;
 			position: fixed;
-			top: 65%;
+			top: 60%;
 			left: 50%;
-			transform: translate(-50%, -35%);
+			transform: translate(-50%, -40%);
 			width: 55vw;
 			z-index: 10;
 		}
