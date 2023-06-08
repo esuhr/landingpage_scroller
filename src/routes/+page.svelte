@@ -339,16 +339,6 @@
 		/* visibility: hidden; */
 	}
 
-	.arrowContainer {
-		position: fixed;
-		height: 40vh;
-		top: 60%;
-		left: 50%;
-		transform: translate(-50%, -40%);
-		z-index: 15;
-		/* border: 1px red solid; */
-	}
-
 	.scrollContainer {
 		z-index: 5;
 		display: flex;
@@ -421,6 +411,17 @@
 	}
 
 	@media screen and (min-width: 480px) {
+
+		.arrowContainer {
+			position: fixed;
+			height: 40vh;
+			top: 60%;
+			left: 50%;
+			transform: translate(-50%, -40%);
+			z-index: 15;
+			/* border: 1px red solid; */
+		}
+
 
 		.aniContainer {
 			position: fixed;
@@ -544,6 +545,16 @@
 	}
 /* mobile sizing */
 	@media screen and (max-width: 480px) {
+		.arrowContainer {
+			position: fixed;
+			height: 60vh;
+			top: 60%;
+			left: 50%;
+			transform: translate(-50%, -40%);
+			z-index: 15;
+			/* border: 1px red solid; */
+		}
+
 		.thankyou {
 			font-size: 0.7rem;
 		}
