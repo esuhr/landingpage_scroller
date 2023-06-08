@@ -417,7 +417,7 @@
 		top: 80%;
 		left: 50%;
 		transform: translate(-50%, -20%);
-		max-width: 300px; 
+		max-width: 200px; 
 	}
 
 	@media screen and (min-width: 480px) {
@@ -444,6 +444,15 @@
 		.imageContainer img {
 			width: 100%;
 			max-width: 700px;
+		}
+
+		.textContainer {
+			position: fixed;
+			z-index: 9;
+			top: 80%;
+			left: 50%;
+			transform: translate(-50%, -20%);
+			max-width: 200px; 
 		}
 
 		.imageCaption {
@@ -562,6 +571,15 @@
 		}
 		.imageContainer img {
 			width: 100%;
+		}
+
+		.textContainer {
+			position: fixed;
+			z-index: 9;
+			top: 80%;
+			left: 50%;
+			transform: translate(-50%, -20%);
+			max-width: 150px; 
 		}
 
 		.imageCaption {
