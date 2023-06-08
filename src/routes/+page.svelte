@@ -547,7 +547,7 @@
 	@media screen and (max-width: 480px) {
 		.arrowContainer {
 			position: fixed;
-			height: 60vh;
+			height: 800px;
 			top: 60%;
 			left: 50%;
 			transform: translate(-50%, -40%);
