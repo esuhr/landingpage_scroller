@@ -284,7 +284,7 @@
 			<img src="/Products.png" alt=""/>
 		</div>
 		<div class="imageCaption" bind:this={imageCaption} style="visibility:hidden;">
-			<p>We're creating a microbiome balancing haircare system for sensitive skin.</p>
+			<p>We are creating a microbiome balancing haircare system for sensitive skin.</p>
 		</div>
 	</div>
 	<div class="thankyou" bind:this={thankyou} style="visibility: hidden;">
