@@ -420,6 +420,7 @@
 			left: 50%;
 			transform: translate(-50%, -40%);
 			z-index: 15;
+			width: 50vw;
 			/* border: 1px red solid; */
 		}
 
@@ -548,7 +549,8 @@
 	@media screen and (max-width: 480px) {
 		.arrowContainer {
 			position: fixed;
-			height: 800px;
+			height: 1000px;
+			width: 100vw;
 			top: 60%;
 			left: 50%;
 			transform: translate(-50%, -40%);
